@@ -1,0 +1,7 @@
+{
+  "name": "KCH Solution LLC - Premium Software Company",
+  "description": "A high-end corporate website for KCH Solution LLC, a leading software development company in Mongolia and international markets specializing in enterprise systems and digital platforms.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
