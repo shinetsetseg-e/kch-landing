@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Cloud, Database, Code, ShieldCheck, Cpu, Terminal } from 'lucide-react';
+import { Cloud, Code, Cpu, Database, ShieldCheck, Terminal } from 'lucide-react';
+import React from 'react';
 
 const TechStack: React.FC = () => {
   const stack = [
@@ -15,7 +15,7 @@ const TechStack: React.FC = () => {
   return (
     <section id="capabilities" className="px-6 lg:px-12 max-w-[1600px] mx-auto py-24 relative overflow-hidden">
       {/* Decorative Blueprint Line */}
-      <div className="absolute top-0 right-0 h-full w-px bg-slate-200 dark:bg-white/10 hidden lg:block -translate-x-[400px]" />
+      <div className="absolute -z-10 top-0 right-0 h-full w-px bg-slate-200 dark:bg-white/10 hidden lg:block -translate-x-[400px]" />
       
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
         {/* Left Side: Header */}
