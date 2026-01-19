@@ -1,7 +1,7 @@
-import React from 'react';
-import { TranslationStrings, Theme } from '../types';
-import { Target, Eye, Leaf, Globe, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { ArrowRight, Eye, Globe, Leaf, Phone, Target } from 'lucide-react';
+import React from 'react';
+import { Theme, TranslationStrings } from '../types';
 
 interface Props {
   t: TranslationStrings;
@@ -40,13 +40,14 @@ const VisionMission: React.FC<Props> = ({ t }) => {
             Our existence is defined by the relentless pursuit of architectural perfection and human-centric digital ecosystems.
           </p>
           <div className="pt-8">
-            <div className="p-6 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 inline-flex items-center gap-6">
-              <div className="flex -space-x-3">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white dark:border-slate-900 bg-slate-200 dark:bg-slate-800" />
-                ))}
+            <div className="flex items-center gap-6 pt-6 border-t border-slate-100 dark:border-white/5">
+              <div className="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center text-blue-600">
+                <Phone size={20} />
               </div>
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Trusted by Global Leaders</span>
+              <div>
+                <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Consultation</p>
+                <p className="text-lg font-black dark:text-white text-slate-900">+976 7011-XXXX</p>
+              </div>
             </div>
           </div>
         </motion.div>

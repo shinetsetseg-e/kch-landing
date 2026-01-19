@@ -1,22 +1,63 @@
+'use client';
+import { motion } from 'framer-motion';
+import { Activity, Code, Layers, Search, Settings } from 'lucide-react';
 import React from 'react';
 import { TranslationStrings } from '../types';
-import { motion } from 'framer-motion';
-import { Cpu, Zap, Shield, Users, Layers, Activity, Database, ArrowUpRight } from 'lucide-react';
 
 interface Props {
   t: TranslationStrings;
 }
 
 const EngineeringShowcase: React.FC<Props> = ({ t }) => {
-  const items = [
-    { title: t.value1, icon: <Users />, desc: "Intuitive user-centric ecosystems focused on high-efficiency interactions.", span: "col-span-1 lg:col-span-8" },
-    { title: t.value2, icon: <Layers />, desc: "Reliable, high-performance distributed architecture.", span: "col-span-1 lg:col-span-4" },
-    { title: t.value3, icon: <Zap />, desc: "End-to-end automation of complex business logic.", span: "col-span-1 lg:col-span-4" },
-    { title: t.value5, icon: <Shield />, desc: "Military-grade security integrated at every architecture layer.", span: "col-span-1 lg:col-span-8" },
+  const steps = [
+    { 
+      title: "Discovery & Consultation", 
+      icon: <Search size={32} />, 
+      desc: "Бид таны бизнесийн хэрэгцээг судалж, хамгийн оновчтой IT шийдлийг тодорхойлно.",
+      accent: "from-blue-500 to-cyan-400"
+    },
+    { 
+      title: "Strategy & Planning", 
+      icon: <Settings size={32} />, 
+      desc: "Өргөтгөх боломжтой, аюулгүй байдал хангасан замын зураглалыг боловсруулна.",
+      accent: "from-emerald-500 to-teal-400"
+    },
+    { 
+      title: "Design & Architecture", 
+      icon: <Layers size={32} />, 
+      desc: "Системийн архитектурыг олон улсын стандартын дагуу төлөвлөж инженерчилнэ.",
+      accent: "from-purple-500 to-indigo-400"
+    },
+    { 
+      title: "Development & QA", 
+      icon: <Code size={32} />, 
+      desc: "Өндөр чанартай кодчилол болон автоматжуулсан тестийн системээр баталгаажуулна.",
+      accent: "from-blue-600 to-blue-400"
+    },
+    { 
+      title: "Support & Optimization", 
+      icon: <Activity size={32} />, 
+      desc: "Системийн тасралтгүй ажиллагааг хангаж, тогтмол сайжруулалт хийж ажиллана.",
+      accent: "from-slate-500 to-slate-300"
+    }
   ];
 
   return (
-    <section className="px-6 lg:px-12 max-w-[1600px] mx-auto py-24">
+    <section className="relative min-h-[700px] flex items-center py-24 overflow-hidden transition-colors duration-500 bg-slate-50 dark:bg-slate-950">
+      {/* Background Image with Blur Effect */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img 
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2000" 
+          alt="Collaborative Teamwork" 
+          className="w-full h-full object-cover grayscale-[0.1] scale-110 blur-[1px] opacity-100 dark:opacity-40"
+        />
+        {/* Deep Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-50 via-slate-50/90 to-transparent dark:from-slate-950 dark:via-slate-950/90 dark:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-50 dark:to-slate-950" />
+      </div>
+
+      <div className="relative z-10 max-w-[1500px] mx-auto px-6 w-full">
+        {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-end gap-12 mb-20">
         <div className="max-w-2xl">
           <span className="text-blue-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Core Principles</span>
@@ -27,39 +68,48 @@ const EngineeringShowcase: React.FC<Props> = ({ t }) => {
         <div className="h-px w-32 bg-slate-200 dark:bg-white/10 mb-4 hidden md:block" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 auto-rows-fr">
-        {items.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className={`${item.span} group relative p-10 rounded-[2.5rem] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 overflow-hidden transition-all duration-700 hover:border-blue-600/30 hover:bg-white dark:hover:bg-slate-900 shadow-sm hover:shadow-2xl hover:shadow-blue-500/5`}
-          >
-            {/* Structural grid lines decoration */}
-            <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] pointer-events-none group-hover:opacity-[0.07] transition-opacity">
-              <div className="grid-lines w-full h-full" />
-            </div>
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex justify-between items-start mb-12">
-                <div className="w-14 h-14 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-blue-600 shadow-xl border border-slate-100 dark:border-white/10 group-hover:scale-110 transition-transform duration-500">
-                  {React.cloneElement(item.icon as React.ReactElement<any>, { size: 28 })}
-                </div>
-                <ArrowUpRight size={20} className="text-slate-300 dark:text-slate-700 group-hover:text-blue-600 transition-colors" />
+        {/* 5-Step Glass Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          {steps.map((step, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="group relative flex flex-col p-8 rounded-[1.5rem] border border-slate-200/50 dark:border-white/10 overflow-hidden min-h-[320px] transition-all duration-500 bg-white/40 dark:bg-white/[0.03] backdrop-blur-2xl hover:bg-white/70 dark:hover:bg-white/[0.08] hover:shadow-2xl hover:shadow-blue-500/10 hover:-translate-y-1"
+            >
+              {/* Icon Section */}
+              <div className="mb-10 text-slate-700 dark:text-white/80 group-hover:text-blue-600 dark:group-hover:text-white transition-colors duration-300">
+                {step.icon}
               </div>
 
-              <div className="mt-auto space-y-4">
-                <h3 className="text-2xl font-black tracking-tight dark:text-white text-slate-900 uppercase">{item.title}</h3>
-                <p className="text-slate-500 dark:text-slate-400 font-light leading-relaxed max-w-sm">
-                  {item.desc}
+              {/* Title Section */}
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 leading-snug">
+                {step.title}
+              </h3>
+
+              {/* Hover Effect: Description text reveals */}
+              <div className="mt-auto">
+                <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium dark:font-light opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75">
+                  {step.desc}
                 </p>
               </div>
-            </div>
-          </motion.div>
-        ))}
+
+              {/* Bottom Decorative Accent Line */}
+              <div className={`absolute bottom-0 left-0 h-1.5 bg-gradient-to-r ${step.accent} w-0 group-hover:w-full transition-all duration-700 ease-in-out`} />
+            </motion.div>
+          ))}
+        </div>
       </div>
+
+      <style>{`
+        .backdrop-blur-2xl {
+          backdrop-filter: blur(40px);
+          -webkit-backdrop-filter: blur(40px);
+        }
+      `}</style>
     </section>
   );
 };
