@@ -93,7 +93,7 @@ const Contact: React.FC<Props> = ({ t }) => {
                 </div>
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-widest text-indigo-300/60">Direct Call</p>
-                  <p className="font-bold text-white text-base">+976 7011-XXXX</p>
+                  <p className="font-bold text-white text-base">+97677012277</p>
                 </div>
               </div>
 

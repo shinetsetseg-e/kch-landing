@@ -1,7 +1,7 @@
 
+import { Facebook, Github, Linkedin, Mail, MapPin, Phone, Twitter } from 'lucide-react';
 import React from 'react';
-import { TranslationStrings, Theme } from '../types';
-import { Facebook, Linkedin, Twitter, Github, Mail, Phone, MapPin } from 'lucide-react';
+import { Theme, TranslationStrings } from '../types';
 
 interface Props {
   t: TranslationStrings;
@@ -75,7 +75,7 @@ const Footer: React.FC<Props> = ({ t, theme }) => {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="w-4 h-4 text-blue-600" />
-                <span>+976 7011-XXXX</span>
+                <span>+97677012277</span>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 text-blue-600 mt-1 shrink-0" />

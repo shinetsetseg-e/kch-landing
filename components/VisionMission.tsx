@@ -46,7 +46,7 @@ const VisionMission: React.FC<Props> = ({ t }) => {
               </div>
               <div>
                 <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Consultation</p>
-                <p className="text-lg font-black dark:text-white text-slate-900">+976 7011-XXXX</p>
+                <p className="text-lg font-black dark:text-white text-slate-900">+97677012277</p>
               </div>
             </div>
           </div>
