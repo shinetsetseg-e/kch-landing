@@ -1,7 +1,6 @@
-
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Phone, Send, Sparkles } from 'lucide-react';
-import React from 'react';
+import React, { useState } from 'react';
 import { Theme, TranslationStrings } from '../types';
 
 interface Props {
@@ -10,6 +9,34 @@ interface Props {
 }
 
 const Contact: React.FC<Props> = ({ t }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const subject = encodeURIComponent(`Төслийн санал: ${formData.name}`);
+    const body = encodeURIComponent(
+      `Нэр: ${formData.name}\n` +
+      `И-мэйл: ${formData.email}\n` +
+      `Утас: ${formData.phone}\n\n` +
+      `Төслийн товч: \n${formData.message}`
+    );
+    
+    window.location.href = `mailto:info@kchsolution.mn?subject=${subject}&body=${body}`;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <section className="section-padding px-6 lg:px-8 max-w-[1600px] mx-auto overflow-hidden">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
@@ -95,12 +122,31 @@ const Contact: React.FC<Props> = ({ t }) => {
             <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">Бидэнд хэрэгцээ шаардлагаа үлдээгээрэй, бид тантай эргэн холбогдох болно.</p>
           </div>
 
-          <form className="space-y-8">
+          <form className="space-y-8" onSubmit={handleSubmit}>
+            <div className="space-y-2">
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Full Name</label>
+              <div className="relative">
+                <input 
+                  required
+                  type="text" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Таны нэр" 
+                  className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-600 transition-all outline-none dark:text-white" 
+                />
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Company Email</label>
                 <input 
+                  required
                   type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="name@company.com" 
                   className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-600 transition-all outline-none dark:text-white" 
                 />
@@ -108,7 +154,11 @@ const Contact: React.FC<Props> = ({ t }) => {
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Phone Number</label>
                 <input 
+                  required
                   type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="+976" 
                   className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-600 transition-all outline-none dark:text-white" 
                 />
@@ -117,12 +167,19 @@ const Contact: React.FC<Props> = ({ t }) => {
             <div className="space-y-2">
               <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Project Brief</label>
               <textarea 
+                required
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 rows={5} 
-                placeholder="Briefly describe your requirements..." 
+                placeholder="Төслийнхөө талаар товч дурдана уу..." 
                 className="w-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 py-4 focus:ring-2 focus:ring-blue-600 transition-all outline-none resize-none dark:text-white" 
               />
             </div>
-            <button className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg flex items-center justify-center space-x-3 shadow-xl shadow-blue-500/20 hover:bg-blue-700 transition-all active:scale-[0.98]">
+            <button 
+              type="submit"
+              className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg flex items-center justify-center space-x-3 shadow-xl shadow-blue-500/20 hover:bg-blue-700 transition-all active:scale-[0.98]"
+            >
               <span>{t.ctaRequest}</span>
               <Send size={20} />
             </button>
